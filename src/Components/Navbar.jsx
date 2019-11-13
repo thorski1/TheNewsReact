@@ -16,12 +16,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
-import { NavLink } from 'react-router-dom';
-import { HoverPress } from '../Pose/HoverPress'
+import { NavLink } from "react-router-dom";
+import { HoverPress } from "../Pose/HoverPress";
 import { useNavbarStyles } from "../Hooks/useNavbarStyles";
-import { routes } from '../Routes/routes'
-
-
+import { routes } from "../Routes/routes";
 
 export default function PersistentDrawerLeft() {
 	const classes = useNavbarStyles();
@@ -59,7 +57,9 @@ export default function PersistentDrawerLeft() {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap>
-						<NavLink to="/" className={classes.title}>The News</NavLink>
+						<NavLink to="/" className={classes.title}>
+							The News
+						</NavLink>
 					</Typography>
 				</Toolbar>
 			</AppBar>
@@ -89,7 +89,11 @@ export default function PersistentDrawerLeft() {
 								to={route.path}
 								className={classes.navlink}
 							>
-								<ListItem button key={i}>
+								<ListItem
+									button
+									key={i}
+									onClick={handleDrawerClose}
+								>
 									<ListItemIcon>
 										<Icon color="secondary">
 											{route.icon}

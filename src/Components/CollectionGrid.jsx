@@ -6,7 +6,7 @@ import useApi from "../Hooks/useApi";
 import { useCollectionGridStyles } from "../Hooks/useCollectionGridStyles";
 import ArticleCard from "./ArticleCard";
 
-export const CollectionGrid = props => {
+const CollectionGrid = props => {
 	const { articles } = useApi(props.topic);
 	const classes = useCollectionGridStyles();
 
@@ -26,16 +26,14 @@ export const CollectionGrid = props => {
 							} = article;
 							return (
 								<Grid key={uuid()} item>
-									
-										<ArticleCard
-											title={title}
-											author={author}
-											description={description}
-											url={url}
-											urlToImage={urlToImage}
-											content={content}
-										/>
-									
+									<ArticleCard
+										title={title}
+										author={author}
+										description={description}
+										url={url}
+										urlToImage={urlToImage}
+										content={content}
+									/>
 								</Grid>
 							);
 						})}
@@ -45,3 +43,5 @@ export const CollectionGrid = props => {
 		</div>
 	);
 };
+
+export default CollectionGrid;

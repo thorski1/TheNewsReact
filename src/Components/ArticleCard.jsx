@@ -13,6 +13,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useArticleCardStyles } from "../Hooks/useArticleCardStyles";
 import { GrayedCard } from "../Pose/GrayedCard";
 import { Button } from "@material-ui/core";
+import { HoverPress } from "../Pose/HoverPress";
 
 export default function ArticleCard(props) {
 	const classes = useArticleCardStyles();
@@ -31,68 +32,70 @@ export default function ArticleCard(props) {
 	} = props;
 	return (
 		<GrayedCard>
-			<Card className={classes.card} raised>
-				<a href={url} className={classes.link}>
-					<CardHeader
-						title={title}
-						subheader={author ? `by ${author}` : ""}
-						className={classes.header}
-					/>
+			<HoverPress>
+				<Card className={classes.card} raised>
+					<a href={url} className={classes.link}>
+						<CardHeader
+							title={title}
+							subheader={author ? `by ${author}` : ""}
+							className={classes.header}
+						/>
 
-					<CardMedia
-						className={classes.media}
-						image={
-							urlToImage
-								? urlToImage
-								: "/assets/BackupImage.jpg"
-						}
-						title={title}
-					/>
+						<CardMedia
+							className={classes.media}
+							image={
+								urlToImage
+									? urlToImage
+									: "/assets/BackupImage.jpg"
+							}
+							title={title}
+						/>
 
-					<CardContent>
-						<Typography
-							variant="body2"
-							color="textSecondary"
-							component="p"
+						<CardContent>
+							<Typography
+								variant="body2"
+								color="textSecondary"
+								component="p"
+							>
+								{description}
+							</Typography>
+						</CardContent>
+					</a>
+					<CardActions disableSpacing>
+						<IconButton
+							className={clsx(classes.expand, {
+								[classes.expandOpen]: expanded
+							})}
+							onClick={handleExpandClick}
+							aria-expanded={expanded}
+							aria-label="show more"
 						>
-							{description}
-						</Typography>
-					</CardContent>
-				</a>
-				<CardActions disableSpacing>
-					<IconButton
-						className={clsx(classes.expand, {
-							[classes.expandOpen]: expanded
-						})}
-						onClick={handleExpandClick}
-						aria-expanded={expanded}
-						aria-label="show more"
+							<ExpandMoreIcon fontSize="large" />
+						</IconButton>
+					</CardActions>
+					<Collapse
+						in={expanded}
+						timeout="auto"
+						unmountOnExit
 					>
-						<ExpandMoreIcon fontSize="large" />
-					</IconButton>
-				</CardActions>
-				<Collapse
-					in={expanded}
-					timeout="auto"
-					unmountOnExit
-				>
-					<CardContent>
-						<Typography paragraph>
-							{content ? content.slice(0, -13) : ""}
-							<br />
-							<a href={url} className={classes.link}>
-								<Button
-									variant="outlined"
-									color="primary"
-									className={classes.button}
-								>
-									Read More
-								</Button>
-							</a>
-						</Typography>
-					</CardContent>
-				</Collapse>
-			</Card>
+						<CardContent>
+							<Typography paragraph>
+								{content ? content.slice(0, -13) : ""}
+								<br />
+								<a href={url} className={classes.link}>
+									<Button
+										variant="outlined"
+										color="primary"
+										className={classes.button}
+									>
+										Read More
+									</Button>
+								</a>
+							</Typography>
+						</CardContent>
+					</Collapse>
+				</Card>
+			</HoverPress>
 		</GrayedCard>
 	);
 }
