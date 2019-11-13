@@ -21,7 +21,7 @@ export const routes = [
 						name: "General",
 						topic: "country=us&category=general",
 						path: "/general",
-						icon: "computer"
+						icon: "polymer"
 					},
 					{
 						name: "Technology",
