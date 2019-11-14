@@ -37,7 +37,7 @@ export default function ArticleCard(props) {
 					<a href={url} className={classes.link}>
 						<CardHeader
 							title={title}
-							subheader={author ? `by ${author}` : ""}
+							subheader={author ? author : ""}
 							className={classes.header}
 						/>
 
